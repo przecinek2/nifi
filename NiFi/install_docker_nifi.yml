@@ -58,19 +58,5 @@
         dest: /usr/local/lib/docker/cli-plugins/docker-compose
         mode: '0755'
 
-    - name: Tworzenie katalogu projektu
-      file:
-        path: "{{ compose_project_dir }}"
-        state: directory
-        mode: '0755'
-
-    - name: Pobranie pliku docker-compose.yml z GitHub
-      get_url:
-        url: "{{ compose_file_url }}"
-        dest: "{{ compose_project_dir }}/docker-compose.yml"
-        mode: '0644'
-
     - name: Uruchomienie kontenerów z docker-compose
       command: docker compose up -d
-      args:
-        chdir: "{{ compose_project_dir }}"
