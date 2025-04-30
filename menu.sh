@@ -9,9 +9,9 @@ select opcja in "NiFi" "Elastisearch" "Elastisearch+Kibana" "NiFi+Elastisearch+K
             wget https://raw.githubusercontent.com/przecinek2/ansible/main/NiFi/inventory
             ;;
         "Elastisearch")
-            wget https://raw.githubusercontent.com/przecinek2/ansible/main/Elasticsearch
-            wget https://raw.githubusercontent.com/przecinek2/ansible/main/Elasticsearch
-            wget https://raw.githubusercontent.com/przecinek2/ansible/main/Elasticsearch
+            wget https://raw.githubusercontent.com/przecinek2/ansible/main/Elasticsearch/docker_elasticsearch.yml
+            wget https://raw.githubusercontent.com/przecinek2/ansible/main/Elasticsearch/docker-compose.yml
+            wget https://raw.githubusercontent.com/przecinek2/ansible/main/Elasticsearch/inventory
             ;;
         "Elastisearch+Kibana")
             wget https://raw.githubusercontent.com/przecinek2/ansible/main/Elasticsearch%2BKibana/docker-compose.yml
