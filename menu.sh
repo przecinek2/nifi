@@ -5,7 +5,7 @@ select opcja in "NiFi" "Elastisearch" "Elastisearch+Kibana" "NiFi+Elastisearch+K
     case $opcja in
         "NiFi")
             wget https://raw.githubusercontent.com/przecinek2/ansible/main/NiFi/docker-compose.yml
-            wget https://raw.githubusercontent.com/przecinek2/ansible/main/NiFi/install_docker_nifi.yml
+            wget https://raw.githubusercontent.com/przecinek2/ansible/main/NiFi/docker_nifi.yml
             wget https://raw.githubusercontent.com/przecinek2/ansible/main/NiFi/inventory
             ;;
         "Elastisearch")
