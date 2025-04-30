@@ -17,7 +17,9 @@ select opcja in "NiFi" "Elastisearch" "Elastisearch+Kibana" "NiFi+Elastisearch+K
             wget https://raw.githubusercontent.com/przecinek2/ansible/main/Elasticsearch%2BKibana/inventory
             ;;
         "NiFi+Elastisearch+Kibana")
-            
+            wget https://raw.githubusercontent.com/przecinek2/ansible/main/
+            wget https://raw.githubusercontent.com/przecinek2/ansible/main/
+            wget https://raw.githubusercontent.com/przecinek2/ansible/main/
             ;;
         "Wyjście")
             echo "Kończę skrypt."
