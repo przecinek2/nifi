@@ -1,2 +1,2 @@
 [nifi_servers]
-ansible_user=administrator docker_users='["administrator"]' ansible_ssh_private_key_file=~/.ssh/id_rsa
+localhost ansible_connection=local ansible_user=administrator docker_users='["administrator"]' ansible_ssh_private_key_file=~/.ssh/id_rsa
