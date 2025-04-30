@@ -1,0 +1,62 @@
+---
+- name: Instalacja Docker, Docker Compose i uruchomienie NiFi Elastcsearch Kibana z GitHub Compose
+  hosts: all
+  become: true
+
+  tasks:
+    - name: Aktualizacja pakietów APT
+      apt:
+        update_cache: yes
+
+    - name: Instalacja wymaganych pakietów
+      apt:
+        name:
+          - apt-transport-https
+          - ca-certificates
+          - curl
+          - software-properties-common
+        state: present
+
+    - name: Dodanie klucza GPG Dockera
+      apt_key:
+        url: https://download.docker.com/linux/ubuntu/gpg
+        state: present
+
+    - name: Dodanie repozytorium Dockera
+      apt_repository:
+        repo: deb [arch=amd64] https://download.docker.com/linux/ubuntu {{ ansible_distribution_release }} stable
+        state: present
+
+    - name: Aktualizacja pakietów
+      apt:
+        update_cache: yes
+
+    - name: Instalacja Dockera
+      apt:
+        name:
+          - docker-ce
+          - docker-ce-cli
+          - containerd.io
+        state: latest
+
+    - name: Dodanie użytkownika do grupy docker
+      user:
+        name: "{{ item }}"
+        groups: docker
+        append: yes
+      loop: "{{ docker_users }}"
+
+    - name: Upewnienie że directory istnieje
+      file:
+       path: /usr/local/lib/docker/cli-plugins
+       state: directory
+       mode: '0755'
+
+    - name: Instalacja Docker Compose (v2 jako plugin CLI)
+      get_url:
+        url: https://github.com/docker/compose/releases/download/v2.24.6/docker-compose-linux-x86_64
+        dest: /usr/local/lib/docker/cli-plugins/docker-compose
+        mode: '0755'
+
+    - name: Uruchomienie kontenerów z docker-compose
+      command: docker compose up -d
