@@ -132,6 +132,7 @@ def convert_xml_to_json(xml_file_path):
             return None
 
 def send_to_elasticsearch(json_data, source_file):
+    json_data["source_file"] = source_file  # Dodaj nazwę pliku do dokumentu
     try:
         response = requests.post(f"{FULL_INDEX_URL}/_doc", headers=HEADERS, json=json_data)
         if response.status_code in [200, 201]:
@@ -148,7 +149,6 @@ def process_contractor_documents(json_data, source_file):
         print(f"📂 Rozdzielam {len(contractor_path)} wpisów ContractorCompensationGrp...")
         for i, contractor in enumerate(contractor_path):
             doc = {
-                "source_file": source_file,
                 "contractor_index": i,
                 "ContractorCompensationGrp": contractor
             }
